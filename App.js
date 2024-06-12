@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
+import {StatusBar, StyleSheet, View,} from 'react-native';
+import { useFonts } from 'expo-font';
+import { Navigation } from './Navigation';
+import {Provider, useDispatch} from 'react-redux'
+import { store } from './redux/store';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	
+	const [fontsLoaded, fontError] = useFonts({
+		Pomidorko: require("./assets/fonts/Pomidorko_cyr.ttf"),
+	});
+	
+	
+  	return (
+		<Provider store={store}>
+			<StatusBar backgroundColor={"white"}/>
+			<Navigation/>	
+		</Provider>
+  	);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
